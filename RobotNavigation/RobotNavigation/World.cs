@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace RobotNavigation
 {
@@ -14,7 +15,6 @@ namespace RobotNavigation
 
     public class World
     {
-        private string _filename;
         private List<Node> _nodeList = new List<Node>();
         private Agent _movementAgent;
         private string _agent;
@@ -22,12 +22,33 @@ namespace RobotNavigation
 
         public World(string file)
         {
-            // file contains the world
-            _filename = file;
+            ExtractFile(file);
         }
         
 
-
+        private void ExtractFile(string file)
+        {
+            try
+            {
+                // Create an instance of StreamREader to read from a file
+                // the using statement also closes the StreamReader
+                using (StreamReader sr = new StreamReader(file))
+                {
+                    string line;
+                    // Read and display lines from the file until the end of the file is met.
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        Console.WriteLine(line);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                // Let the user know what went wrong.
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(e.Message);
+            }
+        }
 
 
 
@@ -196,11 +217,6 @@ namespace RobotNavigation
         {
             string trimLine = line.Trim(new Char[] { '[', ']', '(', ')' });
             return trimLine.Split(',', ')');
-        }
-
-        public string[] File
-        {
-            get { return _file; }
         }
 
         public List<Node> NodeList
