@@ -14,18 +14,28 @@ namespace RobotNavigation
 
     public class World
     {
-        private string[] _file;
+        private string _filename;
         private List<Node> _nodeList = new List<Node>();
         private Agent _movementAgent;
         private string _agent;
 
-        public World(string[] file, string agent)
-        {
-            _file = file;
 
-            _agent = agent.ToUpper();
+        public World(string file)
+        {
+            // file contains the world
+            _filename = file;
         }
         
+
+
+
+
+
+
+
+
+
+        /*
         public void ExtractFile()
         {
             // Getting the width and height of the nodes in the world
@@ -122,7 +132,7 @@ namespace RobotNavigation
             // Create all node connections to each other
             CreateNodeConnections(NodeList, worldWidth, worldHeight); 
         }
-
+        
         public void CreateNodeConnections(List<Node> list, int worldWidth, int worldHeight)
         {
             foreach (Node node1 in list)
@@ -166,6 +176,7 @@ namespace RobotNavigation
                 node1.AddDirectionNodes(up, right, down, left);
             } 
         }
+        */
 
         public bool ChildCheck(Node node, Position childPos)
         {

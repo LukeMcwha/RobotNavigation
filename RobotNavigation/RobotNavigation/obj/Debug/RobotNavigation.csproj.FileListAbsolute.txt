@@ -1,7 +1,0 @@
-C:\Users\MrHou\OneDrive\Documents\Programs\Repos\RobotNavigation\RobotNavigation\RobotNavigation\obj\Debug\RobotNavigation.csprojAssemblyReference.cache
-C:\Users\MrHou\OneDrive\Documents\Programs\Repos\RobotNavigation\RobotNavigation\RobotNavigation\obj\Debug\RobotNavigation.csproj.CoreCompileInputs.cache
-C:\Users\MrHou\OneDrive\Documents\Programs\Repos\RobotNavigation\RobotNavigation\RobotNavigation\bin\Debug\RobotNavigation.exe.config
-C:\Users\MrHou\OneDrive\Documents\Programs\Repos\RobotNavigation\RobotNavigation\RobotNavigation\bin\Debug\RobotNavigation.exe
-C:\Users\MrHou\OneDrive\Documents\Programs\Repos\RobotNavigation\RobotNavigation\RobotNavigation\bin\Debug\RobotNavigation.pdb
-C:\Users\MrHou\OneDrive\Documents\Programs\Repos\RobotNavigation\RobotNavigation\RobotNavigation\obj\Debug\RobotNavigation.exe
-C:\Users\MrHou\OneDrive\Documents\Programs\Repos\RobotNavigation\RobotNavigation\RobotNavigation\obj\Debug\RobotNavigation.pdb
