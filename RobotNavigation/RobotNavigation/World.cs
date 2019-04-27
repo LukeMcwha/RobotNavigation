@@ -38,6 +38,13 @@ namespace RobotNavigation
                     // Read and display lines from the file until the end of the file is met.
                     while ((line = sr.ReadLine()) != null)
                     {
+                        string[] element = line.Split(' ');
+
+                        for(int i = 0; i < element.Length; i++)
+                        {
+                            Console.Write(element[i]);
+                        }
+                        Console.WriteLine();
                         Console.WriteLine(line);
                     }
                 }
