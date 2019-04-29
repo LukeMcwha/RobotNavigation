@@ -25,5 +25,10 @@ namespace RobotNavigation
         {
             get { return _y; }
         }
+
+        public override string ToString()
+        {
+            return _x.ToString() + ' ' + _y.ToString();
+        }
     }
 }

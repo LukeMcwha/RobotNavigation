@@ -16,3 +16,7 @@ RobotNavigation/\.vs/RobotNavigation/v15/Server/sqlite3/db\.lock
 RobotNavigation/\.vs/RobotNavigation/v15/Server/sqlite3/storage\.ide
 
 RobotNavigation/\.vs/RobotNavigation/v15/
+
+RobotNavigation/RobotNavigation/bin/Debug/
+
+*.exe

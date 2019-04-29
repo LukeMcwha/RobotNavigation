@@ -15,7 +15,7 @@ namespace RobotNavigation
 
     public class World
     {
-        private List<Node> _nodeList = new List<Node>();
+        private List<Node> _world = new List<Node>();
         private Agent _movementAgent;
         private string _agent;
 
@@ -23,6 +23,11 @@ namespace RobotNavigation
         public World(string file)
         {
             ExtractFile(file);
+
+            foreach (Node n in _world)
+            {
+                Console.WriteLine(n.Pos.ToString());
+            }
         }
         
 
@@ -35,17 +40,20 @@ namespace RobotNavigation
                 using (StreamReader sr = new StreamReader(file))
                 {
                     string line;
+                    int x = 0;
+                    int y = 0;
                     // Read and display lines from the file until the end of the file is met.
                     while ((line = sr.ReadLine()) != null)
                     {
-                        string[] element = line.Split(' ');
-
-                        for(int i = 0; i < element.Length; i++)
+                        List<string> mapLine = new List<string>(line.Split(' '));
+                        
+                        foreach (string s in mapLine)
                         {
-                            Console.Write(element[i]);
+                            _world.Add(new Node(x, y));
+                            x++;
                         }
-                        Console.WriteLine();
-                        Console.WriteLine(line);
+                        x = 0;
+                        y++;
                     }
                 }
             }
@@ -226,9 +234,9 @@ namespace RobotNavigation
             return trimLine.Split(',', ')');
         }
 
-        public List<Node> NodeList
+        public List<Node> WorldNodes
         {
-            get { return _nodeList; }
+            get { return _world; }
         }
 
         public Agent MovementAgent
