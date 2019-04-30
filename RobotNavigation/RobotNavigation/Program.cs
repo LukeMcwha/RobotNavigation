@@ -11,17 +11,12 @@ namespace RobotNavigation
     { 
         static void Main(string[] args)
         {
-            // Create world by passing in file through constructor
-            if (File.Exists(String.Format("..\\..\\maps\\{0}", args[0])))
-            {
-                World gameWorld = new World(String.Format("..\\..\\maps\\{0}", args[0]));   // passes file name and constructor will initalise the world
-               // if (!gameWorld.MovementAgent.Search())
-               //     Console.WriteLine("No Solution Found");
-            }
-            else
-            {
-                Console.WriteLine("Invalid filepath to map");
-            } 
+            // Create simulation manager passing in textfile in arguments 
+            // TODO: (may change to be commandline command through sim manager)
+            SimulationManager manager = new SimulationManager(args[0]);
+
+            // Runs simulations
+            manager.Run();
         }
     }
 }
