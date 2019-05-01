@@ -8,6 +8,8 @@ namespace RobotNavigation
 {
     public class WallNode : Node
     {
+        public WallNode() : base(new Position())
+        { }
         public WallNode(Position pos) : base(pos)
         {
 

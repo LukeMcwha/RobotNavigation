@@ -15,12 +15,16 @@ namespace RobotNavigation
         {
             _world = new World();
             _world.CreateWorldFromFile(worldTextFile);
-            _worldAgent = null;
+            _worldAgent = new Agent();
         }
 
         public void Run()
         {
+            BreadthFirstSearch bfs = new BreadthFirstSearch();
 
+            _worldAgent.AgentSearchMethod = bfs;
+
+            Console.WriteLine(_worldAgent.Search(_world).ToString());
         }
     }
 }

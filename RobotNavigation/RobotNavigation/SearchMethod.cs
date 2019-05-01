@@ -8,12 +8,18 @@ namespace RobotNavigation
 {
     public abstract class SearchMethod
     {
+        Path _completedSearchPath;
+
         public SearchMethod()
         {
+            _completedSearchPath = new Path();
         }
 
-        public abstract Path Search(StartNode sN, GoalNode gN);
+        public abstract bool Search(World world);
 
-        public abstract string ToString();
+        public Path CompletedSearchPath
+        {
+            get { return _completedSearchPath; }
+        }
     }
 }

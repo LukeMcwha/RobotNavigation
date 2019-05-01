@@ -9,30 +9,38 @@ namespace RobotNavigation
     public class Agent
     {
         private SearchMethod _agentSearchMethod;
+        
 
         public Agent()
         {
             _agentSearchMethod = null;
+            
         }
 
-        public Path Search(StartNode startNode, GoalNode goalNode)
+        public Path Search(World world)
         {
             try
             {
-                return _agentSearchMethod.Search(startNode, goalNode);
+                if (_agentSearchMethod.Search(world))
+                {
+                    return _agentSearchMethod.CompletedSearchPath;
+                }
             }
             catch (NullReferenceException e)
             {
                 Console.WriteLine(e.Message);
-                return new Path();
             }
+            // no Result
+            return new Path();
         }
-        
+
+
         public SearchMethod AgentSearchMethod
         {
             get { return _agentSearchMethod; }
             set { _agentSearchMethod = value; }
         }
+        
 
         public override string ToString()
         {
