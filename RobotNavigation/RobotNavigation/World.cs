@@ -88,18 +88,32 @@ namespace RobotNavigation
             switch (s)
             {
                 case ".":
-                    return new NeutralNode(pos);
+                    return new NeutralNode(pos, s);
                 case "X":
-                    return new WallNode(pos);
+                    return new WallNode(pos, s);
                 case "G":
-                    _goal = new GoalNode(pos);
+                    _goal = new GoalNode(pos, s);
                     return _goal;
                 case "S":
-                    _start = new StartNode(pos);
+                    _start = new StartNode(pos, "A");
                     return _start;
                 default:
                     throw new ArgumentException();
             }
+        }
+
+        // Path will come from Agent.SearchMethod.CompleteSearchPath
+        public void PrintPath(Path p)
+        {
+            foreach(Node n in p.NodePath)
+            {
+                n.Symbol = "A";
+            }
+
+            Console.WriteLine(ToString());
+            // get each node within the path, find the corresponding node 
+            // Change the symbol of that node to either "A" or directional symbol
+            // Call this.tostring() to print out the path.
         }
 
         public override string ToString()
@@ -113,7 +127,7 @@ namespace RobotNavigation
                     sb.Append(Environment.NewLine);
                     y = n.Pos.Y;
                 }
-                sb.Append(n.ToString());
+                sb.Append(n.ToString() + " ");
             }
 
             return sb.ToString();

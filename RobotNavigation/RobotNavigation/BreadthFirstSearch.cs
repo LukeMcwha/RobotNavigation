@@ -37,14 +37,13 @@ namespace RobotNavigation
             }
             Frontier.Enqueue(currentNode);
             
-
+            // TODO: IMPLEMENT Paths into Search.
+            
             // while frontier is not empty
             while (Frontier.Count > 0)
             {
-                Console.Clear();
                 // get next node
                 currentNode = Frontier.Dequeue();
-                Console.WriteLine(currentNode.ToString());
                 // add this node to explored list
                 Explored.Add(currentNode);
 
@@ -55,16 +54,14 @@ namespace RobotNavigation
                     if (!Frontier.Contains(n) || !Explored.Contains(n))
                     {
                         if (n is GoalNode)
-                        {
-                            Console.WriteLine(String.Format("GOAL FOUND AT: {0}", n.Pos.ToString()));
                             return true;
-                        }
                         else
                             if (!(n is WallNode))
                                 Frontier.Enqueue(n);
                     }
                 }
-                System.Threading.Thread.Sleep(1000);
+                // 0.5s between each loop to help visualise.
+                //System.Threading.Thread.Sleep(500);
             }
             // if program gets there then there is no solution
             return false;

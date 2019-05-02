@@ -8,9 +8,9 @@ namespace RobotNavigation
 {
     public class WallNode : Node
     {
-        public WallNode() : base(new Position())
+        public WallNode() : base(new Position(), "")
         { }
-        public WallNode(Position pos) : base(pos)
+        public WallNode(Position pos, string s) : base(pos, s)
         {
 
         }
@@ -18,11 +18,6 @@ namespace RobotNavigation
         public override int NodeCost()
         {
             throw new NotImplementedException();
-        }
-
-        public override string ToString()
-        {
-            return "X";
         }
     }
 }

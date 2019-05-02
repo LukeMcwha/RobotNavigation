@@ -8,7 +8,7 @@ namespace RobotNavigation
 {
     public class StartNode : Node
     {
-        public StartNode(Position pos) : base(pos)
+        public StartNode(Position pos, string s) : base(pos, s)
         {
 
         }
@@ -16,11 +16,6 @@ namespace RobotNavigation
         public override int NodeCost()
         {
             throw new NotImplementedException();
-        }
-
-        public override string ToString()
-        {
-            return "S";
         }
     }
 }

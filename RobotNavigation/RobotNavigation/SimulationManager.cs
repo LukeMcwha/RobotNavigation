@@ -23,8 +23,8 @@ namespace RobotNavigation
             BreadthFirstSearch bfs = new BreadthFirstSearch();
 
             _worldAgent.AgentSearchMethod = bfs;
-
-            Console.WriteLine(_worldAgent.Search(_world).ToString());
+            _worldAgent.Search(_world);
+            _world.PrintPath(_worldAgent.AgentSearchMethod.CompletedSearchPath);
         }
     }
 }

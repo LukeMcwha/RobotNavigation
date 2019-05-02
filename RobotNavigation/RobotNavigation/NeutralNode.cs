@@ -8,17 +8,12 @@ namespace RobotNavigation
 {
     public class NeutralNode : Node
     {
-        public NeutralNode(Position pos) : base(pos)
+        public NeutralNode(Position pos, string s) : base(pos, s)
         { }
 
         public override int NodeCost()
         {
             throw new NotImplementedException();
-        }
-
-        public override string ToString()
-        {
-            return ".";
         }
     }
 }

@@ -4,8 +4,9 @@ using System.Collections.Generic;
 
 namespace RobotNavigation
 {
-    public abstract class Node
+    public abstract class Node : IEquatable<Node>
     {
+        private string _symbol;
         private Position _pos;
         private Node _up;
         private Node _right;
@@ -13,18 +14,14 @@ namespace RobotNavigation
         private Node _left;
 
 
-        public Node(Position pos)
+        public Node(Position pos, string s)
         {
+            _symbol = s;
             _pos = pos;
             _up = null;
             _right = null;
             _down = null;
             _left = null;
-        }
-
-        public Position Pos
-        {
-            get { return _pos; }
         }
 
         public void SetChildren(World world)
@@ -53,6 +50,32 @@ namespace RobotNavigation
             return children;
         }
 
+        public override string ToString()
+        {
+            return Symbol.ToString();
+        }
+
+        public bool Equals(Node other)
+        {
+            if (other == null || GetType() != other.GetType())
+                return false;
+            return Pos.Equals(other.Pos);
+        }
+
+        public override int GetHashCode()
+        {
+            return Pos.GetHashCode();
+        }
+
+        public string Symbol
+        {
+            get { return _symbol; }
+            set { _symbol = value; }
+        }
+        public Position Pos
+        {
+            get { return _pos; }
+        }
         public Node Up
         {
             get { return _up; }

@@ -8,7 +8,7 @@ namespace RobotNavigation
 {
     public class GoalNode : Node
     {
-        public GoalNode(Position pos) : base(pos)
+        public GoalNode(Position pos, string s) : base(pos, s)
         {
 
         }
@@ -16,11 +16,6 @@ namespace RobotNavigation
         public override int NodeCost()
         {
             throw new NotImplementedException();
-        }
-
-        public override string ToString()
-        {
-            return "G";
         }
     }
 }
