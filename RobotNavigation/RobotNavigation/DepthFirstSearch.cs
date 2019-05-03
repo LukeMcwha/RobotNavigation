@@ -6,23 +6,17 @@ using System.Threading.Tasks;
 
 namespace RobotNavigation
 {
-
-    /* Algorithm Pseduocode found from textbook 
-     * Artifical Intellegence: A Modern Approach
-     * by Stuart Russell and Peter Norvig
-     * page 82
-    */
-    public class BreadthFirstSearch : SearchMethod
+    public class DepthFirstSearch : SearchMethod
     {
-        Queue<Node> _frontierNode;
-        Queue<Path> _frontierPath;
+        Stack<Node> _frontierNode;
+        Stack<Path> _frontierPath;
         List<Node> _explored;
-        
 
-        public BreadthFirstSearch()
+
+        public DepthFirstSearch()
         {
-            _frontierNode = new Queue<Node>();
-            _frontierPath = new Queue<Path>();
+            _frontierNode = new Stack<Node>();
+            _frontierPath = new Stack<Path>();
             _explored = new List<Node>();
         }
 
@@ -41,18 +35,18 @@ namespace RobotNavigation
                 return true;
             }
             // Add Node to the frontier
-            FrontierNode.Enqueue(currentNode);
+            FrontierNode.Push(currentNode);
             // Add initial Path to the frontier
-            FrontierPath.Enqueue(currentPath);
-            
+            FrontierPath.Push(currentPath);
+
             // while frontier is not empty
             while (FrontierNode.Count > 0 && FrontierPath.Count > 0)
             {
                 // get next node
-                currentNode = FrontierNode.Dequeue();
+                currentNode = FrontierNode.Pop();
                 // get next Path
-                currentPath = FrontierPath.Dequeue();
-                
+                currentPath = FrontierPath.Pop();
+
                 // add this node to explored list
                 Explored.Add(currentNode);
                 // add this node to the path
@@ -76,8 +70,8 @@ namespace RobotNavigation
                             if (!(n is WallNode))
                             {
                                 // Add 
-                                FrontierNode.Enqueue(n);
-                                FrontierPath.Enqueue(new Path(currentPath));
+                                FrontierNode.Push(n);
+                                FrontierPath.Push(new Path(currentPath));
                             }
                         }
                     }
@@ -91,11 +85,11 @@ namespace RobotNavigation
             return false;
         }
 
-        private Queue<Node> FrontierNode
+        private Stack<Node> FrontierNode
         {
             get { return _frontierNode; }
         }
-        private Queue<Path> FrontierPath
+        private Stack<Path> FrontierPath
         {
             get { return _frontierPath; }
         }

@@ -14,6 +14,13 @@ namespace RobotNavigation
         {
 
         }
+        public WallNode(Node n) : base(n)
+        {}
+
+        public override Node CopyNode()
+        {
+            return new WallNode(this);
+        }
 
         public override int NodeCost()
         {

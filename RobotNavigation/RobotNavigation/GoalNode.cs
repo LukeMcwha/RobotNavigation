@@ -12,6 +12,15 @@ namespace RobotNavigation
         {
 
         }
+        public GoalNode(Node n) : base(n)
+        {
+
+        }
+
+        public override Node CopyNode()
+        {
+            return new GoalNode(this);
+        }
 
         public override int NodeCost()
         {

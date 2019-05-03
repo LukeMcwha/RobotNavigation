@@ -16,6 +16,12 @@ namespace RobotNavigation
             _start = null;
             _goal = null;
         }
+        public World(World w)
+        {
+            _start = w.Start;
+            _goal = w.Goal;
+            _world = w.WorldNodes;
+        }
         
 
         public void CreateWorldFromFile(string textfileName)
@@ -103,15 +109,24 @@ namespace RobotNavigation
         }
 
         // Path will come from Agent.SearchMethod.CompleteSearchPath
+        // Print currentPath, needs to reset symbols.
         public void PrintPath(Path p)
         {
             foreach(Node n in p.NodePath)
             {
-                if (!(n is GoalNode))
-                    n.Symbol = "A";
+                Node node = FindNode(n.Pos);
+                node.Symbol = "A";
             }
 
             Console.WriteLine(ToString());
+
+            foreach (Node n in p.NodePath)
+            {
+                Node node = FindNode(n.Pos);
+                node.Symbol = ".";
+            }
+
+
             // get each node within the path, find the corresponding node 
             // Change the symbol of that node to either "A" or directional symbol
             // Call this.tostring() to print out the path.
@@ -135,7 +150,7 @@ namespace RobotNavigation
         }
 
 
-        private int ManhattanDistance(Position node, Position goalPos)
+        public int ManhattanDistance(Position node, Position goalPos)
         {
             return (int)(Math.Abs(node.X - goalPos.X) + Math.Abs(node.Y - goalPos.Y));
         }

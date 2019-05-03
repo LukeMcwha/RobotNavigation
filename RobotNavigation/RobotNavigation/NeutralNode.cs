@@ -10,6 +10,15 @@ namespace RobotNavigation
     {
         public NeutralNode(Position pos, string s) : base(pos, s)
         { }
+        public NeutralNode(Node n) : base(n)
+        {
+
+        }
+
+        public override Node CopyNode()
+        {
+            return new NeutralNode(this);
+        }
 
         public override int NodeCost()
         {

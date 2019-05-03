@@ -23,6 +23,15 @@ namespace RobotNavigation
             _down = null;
             _left = null;
         }
+        public Node(Node n)
+        {
+            _symbol = n.Symbol;
+            _pos = n.Pos;
+            _up = n.Up;
+            _right = n.Right;
+            _down = n.Down;
+            _left = n.Left;
+        }
 
         public void SetChildren(World world)
         {
@@ -48,6 +57,13 @@ namespace RobotNavigation
             children.Add(Down);
             children.Add(Left);
             return children;
+        }
+
+        public abstract Node CopyNode();
+
+        public virtual int NodeCost(World world)
+        {
+            return world.ManhattanDistance(Pos, world.Goal.Pos);
         }
 
         public override string ToString()
@@ -92,6 +108,5 @@ namespace RobotNavigation
         {
             get { return _left; }
         }
-        public abstract int NodeCost();
     }
 }

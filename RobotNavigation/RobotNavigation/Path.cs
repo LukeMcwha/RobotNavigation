@@ -24,6 +24,10 @@ namespace RobotNavigation
         {
             _nodePath = nList;
         }
+        public Path(Path p)
+        {
+            _nodePath = new List<Node>(p.NodePath);
+        }
 
         public void Add(Node n)
         {

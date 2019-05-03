@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Agent.cs" />
     <Compile Include="BreadthFirstSearch.cs" />
+    <Compile Include="DepthFirstSearch.cs" />
     <Compile Include="GoalNode.cs" />
     <Compile Include="NeutralNode.cs" />
     <Compile Include="Node.cs" />

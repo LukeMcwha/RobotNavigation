@@ -21,10 +21,12 @@ namespace RobotNavigation
         public void Run()
         {
             BreadthFirstSearch bfs = new BreadthFirstSearch();
+            DepthFirstSearch dfs = new DepthFirstSearch();
 
-            _worldAgent.AgentSearchMethod = bfs;
+            _worldAgent.AgentSearchMethod = dfs;
             _worldAgent.Search(_world);
             _world.PrintPath(_worldAgent.AgentSearchMethod.CompletedSearchPath);
+            Console.WriteLine("SUCCESS!!");
         }
     }
 }
