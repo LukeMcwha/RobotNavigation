@@ -14,50 +14,71 @@ namespace RobotNavigation
     */
     public class BreadthFirstSearch : SearchMethod
     {
-        Queue<Node> _frontier;
+        Queue<Node> _frontierNode;
+        Queue<Path> _frontierPath;
         List<Node> _explored;
         
 
         public BreadthFirstSearch()
         {
-            _frontier = new Queue<Node>();
+            _frontierNode = new Queue<Node>();
+            _frontierPath = new Queue<Path>();
             _explored = new List<Node>();
-            
         }
 
         public override bool Search(World world)
         {
+            // Starting Node in the world
             Node currentNode = world.Start;
+            // Starting path that contains only the node
+            Path currentPath = new Path();
             List<Node> children;
 
+            // If the goal node is the current Node, then return true with path of only that node
             if (world.Goal == currentNode)
             {
                 CompletedSearchPath.NodePath.Add(currentNode);
                 return true;
             }
-            Frontier.Enqueue(currentNode);
-            
-            // TODO: IMPLEMENT Paths into Search.
+            // Add Node to the frontier
+            FrontierNode.Enqueue(currentNode);
+            // Add initial Path to the frontier
+            FrontierPath.Enqueue(currentPath);
             
             // while frontier is not empty
-            while (Frontier.Count > 0)
+            while (FrontierNode.Count > 0 && FrontierPath.Count > 0)
             {
                 // get next node
-                currentNode = Frontier.Dequeue();
+                currentNode = FrontierNode.Dequeue();
+                // get next Path
+                currentPath = FrontierPath.Dequeue();
+                
                 // add this node to explored list
                 Explored.Add(currentNode);
-
+                // add this node to the path
+                currentPath.Add(currentNode);
+                // Get children of the current node
                 children = currentNode.GetChildren();
 
                 foreach (Node n in children)
                 {
-                    if (!Frontier.Contains(n) || !Explored.Contains(n))
+                    if (!FrontierNode.Contains(n) && !Explored.Contains(n))
                     {
                         if (n is GoalNode)
+                        {
+                            currentPath.Add(n);
+                            CompletedSearchPath = currentPath;
                             return true;
+                        }
                         else
+                        {
                             if (!(n is WallNode))
-                                Frontier.Enqueue(n);
+                            {
+                                // Add 
+                                FrontierNode.Enqueue(n);
+                                FrontierPath.Enqueue(new Path(new List<Node>(currentPath.NodePath)));
+                            }
+                        }
                     }
                 }
                 // 0.5s between each loop to help visualise.
@@ -67,9 +88,13 @@ namespace RobotNavigation
             return false;
         }
 
-        private Queue<Node> Frontier
+        private Queue<Node> FrontierNode
         {
-            get { return _frontier; }
+            get { return _frontierNode; }
+        }
+        private Queue<Path> FrontierPath
+        {
+            get { return _frontierPath; }
         }
         private List<Node> Explored
         {

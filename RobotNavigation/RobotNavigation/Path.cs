@@ -20,10 +20,37 @@ namespace RobotNavigation
             _nodePath = new List<Node>();
             _nodePath.Add(node);
         }
+        public Path(List<Node> nList)
+        {
+            _nodePath = nList;
+        }
+
+        public void Add(Node n)
+        {
+            NodePath.Add(n);
+        }
+
+        public Node GetLast()
+        {
+            return _nodePath.Last();
+        }
 
         public List<Node> NodePath
         {
             get { return _nodePath; }
+        }
+
+        public override bool Equals(object other)
+        {
+            if (other == null || GetType() != other.GetType())
+                return false;
+            Path p = (Path)other;
+            return NodePath.Equals(p.NodePath);
+        }
+
+        public override int GetHashCode()
+        {
+            return NodePath.GetHashCode();
         }
 
         public override string ToString()

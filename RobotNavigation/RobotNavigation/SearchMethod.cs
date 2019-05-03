@@ -20,6 +20,7 @@ namespace RobotNavigation
         public Path CompletedSearchPath
         {
             get { return _completedSearchPath; }
+            set { _completedSearchPath = value; }
         }
     }
 }

@@ -107,7 +107,8 @@ namespace RobotNavigation
         {
             foreach(Node n in p.NodePath)
             {
-                n.Symbol = "A";
+                if (!(n is GoalNode))
+                    n.Symbol = "A";
             }
 
             Console.WriteLine(ToString());
